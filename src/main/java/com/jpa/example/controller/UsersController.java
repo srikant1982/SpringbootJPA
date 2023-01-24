@@ -1,7 +1,9 @@
 package com.jpa.example.controller;
 
+import com.jpa.example.dto.UserRequest;
 import com.jpa.example.entity.Users;
 import com.jpa.example.service.UsersService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +16,14 @@ public class UsersController {
 
     private final UsersService usersService;
 
-    @PostMapping("/users")
-    public List<Users> createAllUser(@RequestBody List<Users> users) {
-        return usersService.createAllUser(users);
+   /* @PostMapping("/users")
+    public List<UserRequest> createAllUser(@RequestBody List<Users> UserRequest) {
+        return usersService.createAllUser(UserRequest);
+    }*/
+
+    @PostMapping("/user")
+    public Users createSingleUser(@RequestBody @Valid UserRequest UserRequest) {
+        return usersService.createUser(UserRequest);
     }
 
     @GetMapping("/users")
