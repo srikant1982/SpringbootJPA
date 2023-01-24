@@ -6,26 +6,26 @@ import com.jpa.example.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UsersService {
     private final UsersRepository usersRepository;
 
-    /*public List<UserRequest> createAllUser(List<UserRequest>  userRequest ) {
-        return ((List<Users>) usersRepository
-                .saveAll())
-                .stream()
-                .map(this::createAllUser)
-                .collect(Collectors.toList())
+    public List<Users> createAllUser(List<UserRequest>  userRequest ) {
 
-                .stream()
-                .map(this::userRequest)
-                .collect(Collectors.toList());
-    }*/
+        Users user ;
+        List<Users> users = new ArrayList<>();
+        for (UserRequest u1 : userRequest) {
+            user = new Users();
+            user.setFirstName(u1.getFirstName());
+            user.setLastName(u1.getLastName());
+            users.add(user);
+        }
+        return  usersRepository.saveAll(users);
+    }
 
     public List<Users> getAllUser(){
         return usersRepository.findAll();

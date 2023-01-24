@@ -16,10 +16,10 @@ public class UsersController {
 
     private final UsersService usersService;
 
-   /* @PostMapping("/users")
-    public List<UserRequest> createAllUser(@RequestBody List<Users> UserRequest) {
+   @PostMapping("/users")
+    public List<Users> createAllUser(@RequestBody List<UserRequest> UserRequest) {
         return usersService.createAllUser(UserRequest);
-    }*/
+    }
 
     @PostMapping("/user")
     public Users createSingleUser(@RequestBody @Valid UserRequest UserRequest) {
